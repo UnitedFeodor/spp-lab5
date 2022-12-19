@@ -26,7 +26,7 @@ namespace stringformatter
                         }
                     case 1:
                         {
-                            if (_finalStateMachine.PreviousState == 4 || _finalStateMachine.PreviousState == 7) //variable name or array element end
+                            if (_finalStateMachine.PreviousState == 4) //variable name or array element end
                             {
                                 stringBuilderRes.Append(_cache.CacheString(template[classMemberStart..i], target));
                             } 

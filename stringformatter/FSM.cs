@@ -29,7 +29,6 @@ namespace stringformatter
         };
 
 
-
         private int _activeState;
         public int ActiveState
         {

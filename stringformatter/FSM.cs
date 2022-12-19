@@ -24,7 +24,7 @@ namespace stringformatter
         {
             // unknown letter digit _ {  }  [  ]
             {0, 0, 0, 0, 0, 0, 0, 0 },  // 0 - error
-            {0, 1, 1, 1, 2, 3, 1, 1 },  // 1
+            {1, 1, 1, 1, 2, 3, 1, 1 },  // 1
             {0, 4, 0, 0, 1, 0, 0, 0 },  // 2
             {0, 0, 0, 0, 0, 1, 0, 0 },  // 3
             {0, 4, 4, 4, 0, 1, 5, 0 },  // 4
@@ -34,11 +34,22 @@ namespace stringformatter
         };
 
         private int _activeState;
+        public int ActiveState
+        {
+            get => _activeState;
+            set
+            {
+                PreviousState = _activeState;
+                _activeState = value;
+            }
+        }
+        public int PreviousState { get => _previousState; set => _previousState = value; }
 
-        public int ActiveState { get => _activeState; set => _activeState = value; }
+        private int _previousState;
 
         public int GetNextState(char c)
         {
+           
 
             int res = _transitions[ActiveState, Array.FindIndex(_states, x => x.Contains(c))];
             ActiveState = res;

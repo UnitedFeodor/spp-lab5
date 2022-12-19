@@ -9,29 +9,26 @@ namespace stringformatter
     public class FSM
     {
         private const string _errors = "";
-        private const string _letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        private const string _digits = "0123456789";
-        private const string _underscore = "_";
+        private const string _lettersDigitsWhitespace = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_ ";
+
         private const string _curlyBracketOpen = "{";
         private const string _curlyBracketClose = "}";
-        private const string _squareBracketOpen = "[";
-        private const string _squareBracketClose = "]";
 
-        private string[] _states = { _errors, _letters, _digits, _underscore, _curlyBracketOpen, _curlyBracketClose, _squareBracketOpen, _squareBracketClose };
+        private string[] _states = { _errors, _lettersDigitsWhitespace, _curlyBracketOpen, _curlyBracketClose, };
 
 
         private int[,] _transitions =
         {
-            // unknown letter digit _ {  }  [  ]
-            {0, 0, 0, 0, 0, 0, 0, 0 },  // 0 - error
-            {1, 1, 1, 1, 2, 3, 1, 1 },  // 1
-            {0, 4, 0, 0, 1, 0, 0, 0 },  // 2
-            {0, 0, 0, 0, 0, 1, 0, 0 },  // 3
-            {0, 4, 4, 4, 0, 1, 5, 0 },  // 4
-            {0, 0, 6, 0, 0, 0, 0, 0 },  // 5
-            {0, 0, 6, 0, 0, 0, 0, 7 },  // 6
-            {0, 0, 0, 0, 0, 1, 0, 0 }   // 7
+            // unknown letterDigit_ {  } 
+            {0, 0, 0, 0, },  // 0 - error
+            {1, 1, 2, 3, },  // 1
+            {0, 4, 1, 0, },  // 2
+            {0, 0, 0, 1, },  // 3
+            {0, 4, 0, 1, }   // 4
+
         };
+
+
 
         private int _activeState;
         public int ActiveState
@@ -49,9 +46,13 @@ namespace stringformatter
 
         public int GetNextState(char c)
         {
-           
 
-            int res = _transitions[ActiveState, Array.FindIndex(_states, x => x.Contains(c))];
+            int inputSymbolType = Array.FindIndex(_states, x => x.Contains(c));
+            if (inputSymbolType == -1)
+            {
+                inputSymbolType = 0;
+            }
+            int res = _transitions[ActiveState, inputSymbolType];
             ActiveState = res;
             return res;
         }

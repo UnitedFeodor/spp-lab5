@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stringfromatter.core", "stringformatter\stringfromatter.core.csproj", "{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stringformatter.core", "stringformatter\stringformatter.core.csproj", "{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stringformatter.tests", "stringformatter.tests\stringformatter.tests.csproj", "{651D1CC9-9840-451B-9EF3-9C37CED45577}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB} = {F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +20,10 @@ Global
 		{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1C85EAE-5D2F-4BBD-8188-8D07E708BDEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{651D1CC9-9840-451B-9EF3-9C37CED45577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{651D1CC9-9840-451B-9EF3-9C37CED45577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{651D1CC9-9840-451B-9EF3-9C37CED45577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{651D1CC9-9840-451B-9EF3-9C37CED45577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

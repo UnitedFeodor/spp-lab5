@@ -15,13 +15,10 @@ namespace stringformatter
             _finalStateMachine.ActiveState = 1;
             StringBuilder stringBuilderRes = new();
             
-            int expressionStart = 0;
+            int classMemberStart = 0;
             for (int i = 0; i < template.Length; i++)
             {
-                
-                _finalStateMachine.GetNextState(template[i]);
-
-                switch (_finalStateMachine.ActiveState)
+                switch (_finalStateMachine.GetNextState(template[i]))
                 {
                     case 0:
                         {
@@ -31,8 +28,8 @@ namespace stringformatter
                         {
                             if (_finalStateMachine.PreviousState == 4 || _finalStateMachine.PreviousState == 7) //variable name or array element end
                             {
-                                // cache stuff
-                            }
+                                stringBuilderRes.Append(_cache.CacheString(template[classMemberStart..i], target));
+                            } 
                             else
                             {
                                 stringBuilderRes.Append(template[i]);
@@ -43,8 +40,7 @@ namespace stringformatter
                         {
                             if (_finalStateMachine.PreviousState == 2)
                             {
-
-                                expressionStart = i;
+                                classMemberStart = i;
                             }
                             break;
                         }
